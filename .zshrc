@@ -6,7 +6,8 @@ export LC_TIME=en_US.UTF-8
 
 export CPUCORES="$(getconf _NPROCESSORS_ONLN)"
 
-export PROGRAMMING=$HOME/Documents/Programming;
+export PROGRAMMING=$HOME/Documents/Develop
+export XDG_CONFIG_HOME=$HOME/.config
 
 # 色を使用出来るようにする
     autoload -Uz colors
@@ -22,6 +23,10 @@ export PROGRAMMING=$HOME/Documents/Programming;
     setopt hist_reduce_blanks
     setopt hist_save_no_dups
 
+# 補完
+    setopt auto_param_keys
+    setopt auto_param_slash
+
 # プロンプト設定
     PROMPT="%{${fg[cyan]}%}%/ $%{${reset_color}%} %"
 
@@ -34,4 +39,11 @@ export PROGRAMMING=$HOME/Documents/Programming;
 # cd
     alias cddev='cd $HOME/Documents/Develop'
     alias cdgo='cd $HOME/Documents/Develop/go'
+    alias cddot='cd $HOME/Documents/Develop/dotfiles'
 
+# GO
+    if [ -x "`which go`" ]; then
+        export GOROOT=`go env GOROOT`
+        export GOPATH=$PROGRAMMING/go
+        export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+    fi
