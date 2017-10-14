@@ -16,8 +16,7 @@ call plug#begin(expand('$XDG_CONFIG_HOME/nvim') . '/plugged/vim-plug/autoload')
     Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 call plug#end()
 
-"# Edit Settings
-set number
+"# Edit settings
 set title
 set showmatch
 set tabstop=4
@@ -27,20 +26,31 @@ set shiftwidth=4
 set list
 set smartindent
 set cursorline
+set number
 syntax on
 
-"# Search Settings
+"# Search settings
 set ignorecase
 set smartcase
 set wrapscan
 set incsearch
 set hlsearch
 
+"# Disable beep sound
+set visualbell t_vb=
+set novisualbell
+set noerrorbells
+
 "# Go
 autocmd FileType go set runtimepath+=globpath($GOROOT, "/misc/vim")
 autocmd FileType go set runtimepath+=globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 set completeopt=menu,preview
+
+"# Key mappings
+noremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
 
 filetype plugin indent on
 filetype on
