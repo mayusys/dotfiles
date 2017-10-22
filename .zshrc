@@ -46,4 +46,5 @@ export XDG_CONFIG_HOME=$HOME/.config
         export GOROOT=`go env GOROOT`
         export GOPATH=$PROGRAMMING/go
         export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+        export GO15VENDOREXPERIMENT=1
     fi
